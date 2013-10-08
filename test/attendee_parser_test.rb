@@ -22,8 +22,8 @@ class AttendeeParserTest < MiniTest::Test
     attendee = ap.attendees.first
     assert_equal "Allison", attendee.first_name
     assert_equal "Nguyen", attendee.last_name
-    assert_equal "arannon@jumpstartlab.com", attendee.email_address
-    assert_equal "6154385000", attendee.homephone
+    assert_equal "arannon@jumpstartlab.com", attendee.email
+    assert_equal "6154385000", attendee.phone
     assert_equal "3155 19th St NW", attendee.street
     assert_equal "Washington", attendee.city
     assert_equal "DC", attendee.state

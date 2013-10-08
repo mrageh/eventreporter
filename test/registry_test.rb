@@ -35,16 +35,16 @@ class RegistryTest < Minitest::Test
     end
   end
 
-  def test_it_finds_attendees_by_homephone
+  def test_it_finds_attendees_by_phone
     registry.attendees = [
       Attendee.new(:homephone => "12345678901"),
       Attendee.new(:homephone => "12345678901"),
       Attendee.new(:homephone => "1234567890")
     ]
-    attendees = registry.find_all_by_homephone("2345678901")
+    attendees = registry.find_all_by_phone("2345678901")
     assert_equal 2, attendees.count
     attendees.each do |attendee|
-      assert_equal '2345678901', attendee.homephone
+      assert_equal '2345678901', attendee.phone
     end
   end
 
@@ -106,11 +106,11 @@ class RegistryTest < Minitest::Test
       Attendee.new(:email_address => "pinalevitsky@jumpstartlab.com"),
       Attendee.new(:email_address => "adan@jumpstartlab.com")
     ]
-    attendees = registry.find_all_by_email_address("pinalevitsky@jumpstartlab.com")
+    attendees = registry.find_all_by_email("pinalevitsky@jumpstartlab.com")
     assert_equal 2, attendees.count
     attendees.each do |attendee|
-      assert_equal 'pinalevitsky@jumpstartlab.com', attendee.email_address.downcase
+      assert_equal 'pinalevitsky@jumpstartlab.com', attendee.email.downcase
     end
   end
 
-  end
+end
