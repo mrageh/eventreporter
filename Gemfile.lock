@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ansi (1.4.3)
     cane (2.6.0)
       parallel
     coderay (1.0.9)
@@ -23,6 +24,8 @@ GEM
       sexp_processor (~> 4.1)
     sexp_processor (4.3.0)
     slop (3.4.6)
+    turn (0.9.6)
+      ansi
 
 PLATFORMS
   ruby
@@ -33,3 +36,4 @@ DEPENDENCIES
   pry
   rake
   reek
+  turn

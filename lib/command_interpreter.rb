@@ -1,3 +1,5 @@
+require "./lib/command_runner"
+
 class CommandInterpreter
   attr_reader :runner_class
 
@@ -25,6 +27,8 @@ class CommandInterpreter
         run_help(parts[1..-1])
       when "find"
         run_find(parts[1..-1])
+      else
+        "sorry I don't know how to do that #{instruction}"
     end
   end
 

@@ -34,9 +34,36 @@ class CommandInterpreterTest < Minitest::Test
       end
     end
 
-    #Only test one of the find methods!!!!!
     def find_first_name(attribute)
       "running find by first_name for #{attribute}"
+    end
+
+    def find_last_name(attribute)
+      "running find by last_name for #{attribute}"
+    end
+
+    def find_email(attribute)
+      "running find by email for #{attribute}"
+    end
+
+    def find_zipcode(attribute)
+      "running find by zipcode for #{attribute}"
+    end
+
+    def find_city(attribute)
+      "running find by city for #{attribute}"
+    end
+
+    def find_state(attribute)
+      "running find by state for #{attribute}"
+    end
+
+    def find_address(attribute)
+      "running find by address for #{attribute}"
+    end
+
+    def find_home_phone(attribute)
+      "running find by home_phone for #{attribute}"
     end
 
   end
