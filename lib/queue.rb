@@ -19,12 +19,6 @@ class Queue
     @data.clear
   end
 
-  def save_to(filename)
-    directory = './data/'
-    file_path = File.join(directory, filename)
-    file = File.open(file_path, 'w'){|file| file.write(@data)}
-  end
-
   def replace(data)
     clear && add(data)
   end

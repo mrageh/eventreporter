@@ -17,7 +17,7 @@ class Printer
     attendees.map {|attendee| format_attendee(attendee)}.join('\n')
   end
 
-  def print_attendees
+  def print_attendees(attendees)
     puts format_attendees(attendees)
   end
 end

@@ -1,18 +1,14 @@
 require "./lib/command_runner"
 
 class CommandInterpreter
-  attr_reader :runner_class
+  attr_reader :runner
 
   def initialize(runner_input = CommandRunner)
-    @runner_class = runner_input
-  end
-
-  def runner
-    runner_class.new
+    @runner = runner_input.new
   end
 
   def default_filename
-    'event_attendees.csv'
+    './data/event_attendees.csv'
   end
 
   def run(command)
@@ -43,7 +39,7 @@ class CommandInterpreter
         runner.queue_clear
       when 'save'
         filename = parts.last
-        runner.queue_save_to(filename)
+        runner.queue_save(filename)
     end
   end
 
@@ -57,8 +53,8 @@ class CommandInterpreter
       when nil
         runner.help
       else
-        commands = parts.join(" ")
-        runner.help(commands.to_s)
+        command = parts.join(" ")
+        runner.help_for_command(command)
     end
   end
 

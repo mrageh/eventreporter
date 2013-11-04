@@ -80,7 +80,7 @@ class CommandInterpreterTest < Minitest::Test
 
   def test_it_runs_load_without_a_filename
     result = ci.run('load')
-    assert_equal 'running load with event_attendees.csv',result
+    assert_equal 'running load with ./data/event_attendees.csv',result
   end
 
   def test_it_prints_ordered_by_the_last_name

@@ -20,7 +20,7 @@ class CommandRunnerTest < Minitest::Test
 
   def test_it_clears_the_queue
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_first_name('Sarah')
+    cr.find_first_name('Sarah')
     assert_equal 2, cr.queue_count
     assert_equal [], cr.queue_clear
     assert_equal 0, cr.queue_count
@@ -28,8 +28,8 @@ class CommandRunnerTest < Minitest::Test
 
   def test_it_replaces_queued_items_on_a_second_find
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_first_name("Sarah")
-    cr.find_attendees_by_first_name("Audrey")
+    cr.find_first_name("Sarah")
+    cr.find_first_name("Audrey")
     assert_equal 1, cr.queue_count
   end
 
@@ -55,50 +55,64 @@ class CommandRunnerTest < Minitest::Test
 
   def test_it_counts_the_loaded_queue_by_first_name
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_first_name('Sarah')
+    cr.find_first_name('Sarah')
     assert_equal 2, cr.queue_count
   end
 
   def test_it_counts_the_loaded_queue_by_last_name
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_last_name('Okaty')
+    cr.find_last_name('Okaty')
     assert_equal 1, cr.queue_count
   end
 
   def test_it_counts_the_loaded_queue_by_street
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_street('1509 Jackson Street')
+    cr.find_street('1509 Jackson Street')
     assert_equal 1, cr.queue_count
   end
 
   def test_it_counts_the_loaded_queue_by_email
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_email('ffbbieucf@jumpstartlab.com')
+    cr.find_email('ffbbieucf@jumpstartlab.com')
     assert_equal 1, cr.queue_count
   end
 
   def test_it_counts_the_loaded_queue_by_phone
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_phone('6507990000') #see if you can improve find method
+    cr.find_phone('6507990000') #see if you can improve find method
     assert_equal 1, cr.queue_count
   end
 
   def test_it_counts_the_loaded_queue_by_city
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_city('Washington')
+    cr.find_city('Washington')
     assert_equal 2,cr.queue_count
   end
 
   def test_it_counts_the_loaded_queue_by_zipcode
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_zipcode('20010')
+    cr.find_zipcode('20010')
     assert_equal 1, cr.queue_count
   end
 
   def test_it_counts_the_loaded_queue_by_state
     cr.load('./data/event_attendees.csv')
-    cr.find_attendees_by_state('DC')
+    cr.find_state('DC')
     assert_equal 2, cr.queue_count
+  end
+
+  def test_it_calls_queue_save_method
+    cr = CommandRunner.new
+    cr.load('./test/fixtures/partial_attendees.csv')
+    cr.find_attendees_by_first_name("Sarah")
+    assert cr.respond_to?(:queue_save)
+  end
+
+  def test_it_executes_the_queue_save_method
+    cr = CommandRunner.new
+    cr.load('./test/fixtures/partial_attendees.csv')
+    cr.find_attendees_by_first_name("Sarah")
+    assert "woot", cr.queue_save("new_file")
   end
 
 end
